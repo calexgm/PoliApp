@@ -31,13 +31,13 @@
             android:text="Cada botón realiza una acción sobre el objeto principal"
             android:textSize="15dp" />
 
-        <View
-            android:id="@+id/default_square"
+        <ImageView
+            android:id="@+id/image_shape"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/transparent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,42 +53,47 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btn_cuadrado"
+                    android:id="@+id/btn_square"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
                     android:layout_marginBottom="10dp"
-                    android:text="Cuadrado " />
+                    android:text="Cuadro" />
+
                 <Button
-                    android:id="@+id/btn_circulo"
+                    android:id="@+id/btn_circle"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
                     android:layout_marginBottom="10dp"
-                    android:text="Círculo" />
+                    android:text="Circulo" />
+
                 <Button
-                    android:id="@+id/btn_triangulo"
+                    android:id="@+id/btn_triangle"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
                     android:layout_marginBottom="10dp"
                     android:text="Triangulo" />
+
                 <Button
-                    android:id="@+id/btn_rectangulo"
+                    android:id="@+id/btn_rectangle"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
                     android:layout_marginBottom="10dp"
                     android:text="Rectangulo" />
+
                 <Button
-                    android:id="@+id/btn_estrella"
+                    android:id="@+id/btn_star"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
                     android:layout_marginBottom="10dp"
                     android:text="Estrella" />
+
                 <Button
-                    android:id="@+id/btn_ovalo"
+                    android:id="@+id/btn_oval"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
@@ -146,7 +151,6 @@
                     android:layout_marginBottom="10dp"
                     android:text="Negro" />
 
-                <!-- Agrega más botones de colores según sea necesario -->
 
             </LinearLayout>
 

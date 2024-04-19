@@ -124,7 +124,7 @@ class PhotosAdd : Fragment() {
             descripcionImg.isEnabled=false
             BotonGuardarImg.isEnabled=false
 
-            progressBar.visibility=View.VISIBLE
+            progressBar.visibility = View.VISIBLE
             BotonGuardarImg.text=""
 
             val newImage = Uri.parse(image)
@@ -196,32 +196,4 @@ class PhotosAdd : Fragment() {
         }
     }
 
-    // Este metodo no es necesaria aqui sino en en fragment de photos
-    private fun loadInformationFromDB(){
-        val dbHelper =PoliSQLiteOpenHelper(requireContext())
-        val db= dbHelper.readableDatabase
-
-        val cursor =db.query(
-            PhotosContract.PhotosEntry.TABLE_NAME,
-            arrayOf(
-                PhotosContract.PhotosEntry.COLUMN_NAME,
-                PhotosContract.PhotosEntry.COLUMN_DESCRIPTION,
-                PhotosContract.PhotosEntry.COLUMN_IMAGE
-            ),null,null,null,null,null
-        )
-        if(cursor.moveToFirst()){
-
-            do {
-                val name = cursor.getString(cursor.getColumnIndexOrThrow(PhotosContract.PhotosEntry.COLUMN_NAME))
-                val description = cursor.getString(cursor.getColumnIndexOrThrow(PhotosContract.PhotosEntry.COLUMN_DESCRIPTION))
-                val image = cursor.getString(cursor.getColumnIndexOrThrow(PhotosContract.PhotosEntry.COLUMN_IMAGE))
-
-                println("Nombre: $name, Descripción: $description Imagen: $image" )
-
-            } while (cursor.moveToNext())
-
-        }
-        cursor.close()
-        db.close()
-    }
 }

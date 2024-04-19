@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/scrollView"
     tools:context=".Videos">
 
     <LinearLayout
@@ -67,39 +68,32 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-        <Button
+        <FrameLayout
+            android:id="@+id/btnUploadVvideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:height="60dp"
-            android:background="@drawable/rounded_corners"
-            android:text="Guardar" />
+            android:gravity="center">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:fillViewport="true">
+            <Button
+                android:id="@+id/btnSaveVideo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:height="70dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Guardar"/>
+
+        </FrameLayout>
+
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <VideoView
-                    android:id="@+id/videoView1"
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_marginBottom="20dp" />
-
-                <VideoView
-                    android:id="@+id/videoView2"
-                    android:layout_width="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:layout_height="170dp" />
             </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView >

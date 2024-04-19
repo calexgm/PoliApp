@@ -107,7 +107,6 @@ class Profile : Fragment() {
             val imageProfileView = view?.findViewById<ImageView>(R.id.imageProfile)
             if (!imagePath.isNullOrEmpty()) {
                 val imageUri = Uri.parse(imagePath)
-                println(imageUri)
                 imageProfileView?.setImageURI(imageUri)
             } else {
                 imageProfileView?.setImageResource(R.drawable.perfil)
