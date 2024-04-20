@@ -14,7 +14,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/menuImageProfile"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerVertical="true"
@@ -25,24 +25,23 @@
         android:clipToOutline="true"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/menuTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/imageView3"
+        android:layout_alignTop="@id/menuImageProfile"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        android:layout_toEndOf="@id/imageView3"
-        android:text="Carlos Gomez"
+        android:layout_toEndOf="@id/menuImageProfile"
         android:textStyle="bold"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/menuTextOccupation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
+        android:layout_below="@id/menuTextName"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@id/imageView3"
-        android:text="Ferreteria"
+        android:layout_toEndOf="@id/menuImageProfile"
+        android:text="Ocupacion"
         android:textSize="16sp" />
 </RelativeLayout>

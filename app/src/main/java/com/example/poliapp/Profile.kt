@@ -23,6 +23,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.poliapp.db.contracts.ProfileContract
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 import org.w3c.dom.Text
 import java.io.File
 import java.io.FileOutputStream
@@ -99,6 +100,13 @@ class Profile : Fragment() {
             val occupation = cursor.getString(cursor.getColumnIndexOrThrow(ProfileContract.ProfileEntry.COLUMN_OCCUPATION))
             val imagePath = cursor.getString(cursor.getColumnIndexOrThrow(ProfileContract.ProfileEntry.COLUMN_IMAGE))
 
+            val navigationView = activity?.findViewById<NavigationView>(R.id.nav_view)
+            val headerView = navigationView?.getHeaderView(0)
+
+            val menuImageProfile = headerView?.findViewById<ImageView>(R.id.menuImageProfile)
+            headerView?.findViewById<TextView>(R.id.menuTextName)?.text = names
+            headerView?.findViewById<TextView>(R.id.menuTextOccupation)?.text = occupation
+
             view?.findViewById<TextView>(R.id.textViewName)?.text = names
             view?.findViewById<TextView>(R.id.editNames)?.text = names
             view?.findViewById<TextView>(R.id.editEmail)?.text = email
@@ -108,8 +116,10 @@ class Profile : Fragment() {
             if (!imagePath.isNullOrEmpty()) {
                 val imageUri = Uri.parse(imagePath)
                 imageProfileView?.setImageURI(imageUri)
+                menuImageProfile?.setImageURI(imageUri)
             } else {
                 imageProfileView?.setImageResource(R.drawable.perfil)
+                menuImageProfile?.setImageResource(R.drawable.perfil)
             }
         }
 
@@ -132,8 +142,12 @@ class Profile : Fragment() {
         val newOccupation = editOccupation.text.toString()
         val newImage = Uri.parse(imageProfile)
 
-        val imagePath = newImage?.let { copyImageToAppStorage(it) }
-        updateProfileInDB(newNames, newEmail, newOccupation, imagePath.toString())
+        var imagePath = ""
+        if (newImage.toString() != ""){
+            imagePath = newImage?.let { copyImageToAppStorage(it) }.toString()
+        }
+
+        updateProfileInDB(newNames, newEmail, newOccupation, imagePath)
 
         Handler(Looper.getMainLooper()).postDelayed({
             editNames.isEnabled = true
@@ -152,11 +166,20 @@ class Profile : Fragment() {
         val dbHelper = PoliSQLiteOpenHelper(requireContext())
         val db = dbHelper.writableDatabase
 
-        val values = ContentValues().apply {
-            put(ProfileContract.ProfileEntry.COLUMN_NAMES, newNames)
-            put(ProfileContract.ProfileEntry.COLUMN_EMAIL, newEmail)
-            put(ProfileContract.ProfileEntry.COLUMN_OCCUPATION, newOccupation)
-            put(ProfileContract.ProfileEntry.COLUMN_IMAGE, newImage)
+        var values = ContentValues()
+        if (newImage.isNullOrEmpty()){
+            values = ContentValues().apply {
+                put(ProfileContract.ProfileEntry.COLUMN_NAMES, newNames)
+                put(ProfileContract.ProfileEntry.COLUMN_EMAIL, newEmail)
+                put(ProfileContract.ProfileEntry.COLUMN_OCCUPATION, newOccupation)
+            }
+        }else{
+            values = ContentValues().apply {
+                put(ProfileContract.ProfileEntry.COLUMN_NAMES, newNames)
+                put(ProfileContract.ProfileEntry.COLUMN_EMAIL, newEmail)
+                put(ProfileContract.ProfileEntry.COLUMN_OCCUPATION, newOccupation)
+                put(ProfileContract.ProfileEntry.COLUMN_IMAGE, newImage)
+            }
         }
 
         val selection = "${ProfileContract.ProfileEntry._ID} = ?"
